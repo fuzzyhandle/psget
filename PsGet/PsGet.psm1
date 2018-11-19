@@ -1162,7 +1162,7 @@ function Add-PathToPSModulePath {
             }
 
             if (-not ($pathValue.Contains($PathToAdd))) {
-                $pathValue = "$pathValue;$PathToAdd"
+                $pathValue = "{0}{1}{2}" -f ($pathValue ,[IO.Path]::PathSeparator, $PathToAdd)
             }
 
             [Environment]::SetEnvironmentVariable('PSModulePath', $pathValue, $scope)
@@ -1876,6 +1876,7 @@ function Update-PSModulePath {
         }
 
         $newSessionValue = "$userModulePath;$machineModulePath;$psModulePath"
+        $newSessionValue = "{0}{1}{2}{3}" -f ($userModulePath,[IO.Path]::PathSeparator,$machineModulePath,[IO.Path]::PathSeparator,$psModulePath)
 
         #Set the value in the current process
         [Environment]::SetEnvironmentVariable('PSModulePath', $newSessionValue, 'Process')
