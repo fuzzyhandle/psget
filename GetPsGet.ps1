@@ -1,6 +1,6 @@
 
 param (
-  $url = "https://github.com/psget/psget/raw/master/PsGet/PsGet.psm1"
+  $url = "https://github.com/fuzzyhandle/psget/raw/master/PsGet/PsGet.psm1"
 )
 
 function Find-Proxy() {
